@@ -15,18 +15,14 @@ import UserList from './features/users/UserList'
 import UserPage from './features/users/UserPage'
 import NotificationsList from './features/notifications/NotificationList'
 import NewsList from './features/news/NewsList'
+import HomePage from './components/HomePage'
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<Navbar />}>
-          <Route index element={(
-            <div>
-              <AddPostForm />
-              <PostsList />
-            </div>
-          )} />
+          <Route index element={<HomePage />} />
           <Route path='posts/:postId' element={<SinglePostPage />} />
           <Route path='editPost/:postId' element={<EditPostForm />} />
           <Route path='users' element={<UserList />} />

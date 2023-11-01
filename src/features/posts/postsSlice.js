@@ -1,6 +1,10 @@
 import { createAsyncThunk, createEntityAdapter, createSelector, createSlice } from '@reduxjs/toolkit'
 import { client } from '../../api/client'
 
+// Taking ID as the argument rather than POST can improve the performance
+// because IDs won't change (unless the sorting function changes)
+// but POST can changes a lot, because it is a reference, any field change will cause POST change
+// How to get the sorted ID? by createEntityAdapter
 const postsAdapter = createEntityAdapter({
     sortComparer: (a, b) => b.date.localeCompare(a.date)
 })
@@ -25,24 +29,6 @@ const postsSlice = createSlice({
     name: 'posts',
     initialState,
     reducers: {
-        // this is deleted when change to thunk
-        // postAdded: {
-        //     reducer: (state, action) => {
-        //         state.posts.push(action.payload)
-        //     },
-        //     prepare: (title, content, userId, reactions) => {
-        //         return {
-        //             payload: {
-        //                 id: nanoid(),
-        //                 date: new Date().toISOString(),
-        //                 title,
-        //                 content,
-        //                 userId,
-        //                 reactions
-        //             }
-        //         }
-        //     }
-        // },
         postEdited: (state, action) => {
             const { id, title, content } = action.payload
             const post = state.entities[id]
@@ -74,9 +60,6 @@ const postsSlice = createSlice({
                 state.status = 'failed'
                 state.error = action.error.message
             })
-            // .addCase(addNewPost.fulfilled,(state,action)=>{
-            //     state.posts.push(action.payload)
-            // })
             // Use the `addOne` reducer for the fulfilled case
             .addCase(addNewPost.fulfilled, postsAdapter.addOne)
     }

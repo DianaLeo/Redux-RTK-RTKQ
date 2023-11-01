@@ -1,5 +1,6 @@
 import { useDispatch } from "react-redux"
 import { reactionAdded } from "./postsSlice"
+import { useAddReactionMutation } from "../api/apiSlice"
 
 const reactionEmoji = {
     thumbsUp: '👍',
@@ -10,11 +11,12 @@ const reactionEmoji = {
 }
 
 const ReactionButtons = ({ post }) => {
-    const dispatch = useDispatch()
+    const [addReaction] = useAddReactionMutation()
 
     const onClickHandler = (id, name) => {
         // when parameters and arguments don't have same names, have to write both
-        dispatch(reactionAdded({ postId: id, reactionName: name }))
+        //dispatch(reactionAdded({ postId: id, reactionName: name }))
+        addReaction({postId:id, reaction:name})
     }
 
     return (
