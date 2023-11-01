@@ -1,32 +1,16 @@
 import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { addNewPost, postAdded } from "./postsSlice"
+import { addNewPost } from "./postsSlice"
+import { selectAllUsers } from "../users/usersSlice"
 
 const AddPostForm = () => {
   const dispatch = useDispatch()
-  const users = useSelector(state => state.users)
+  const users = useSelector(selectAllUsers)
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
   const [userId, setUserId] = useState('')
   const [addRequestStatus, setAddRequestStatus] = useState('idle')
-  //  This is for sync post
-  // const onSubmitHandler = (e) => {
-  //   e.preventDefault()
-  //   // method2: using FormData support async request, file uploading, dynamic form data ...
-  //   // const formData = new FormData()
-  //   // formData.append('id',nanoid())
-  //   // formData.append('title',title)
-  //   // formData.append('content',content)
-  //   // fetch('/',{method:'POST',body:formData})
 
-  //   if (title && content) {
-  //     dispatch(postAdded(title, content, userId, {thumbsUp: 0, heart: 0, eyes: 0}))
-  //   }
-  //   setTitle('')
-  //   setContent('')
-  // }
-
-  // This is for async post
   // Since this is a fake API, the new post won't persist if we reload the page
   const canSave = [title, content, userId].every(Boolean) && addRequestStatus === 'idle'
 
@@ -48,7 +32,6 @@ const AddPostForm = () => {
         setAddRequestStatus('idle')
       }
     }
-
   }
 
   return (

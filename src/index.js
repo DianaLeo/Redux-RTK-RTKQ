@@ -8,6 +8,7 @@ import { Provider } from 'react-redux'
 import { worker } from './api/server'
 import { fetchUsers } from './features/users/usersSlice'
 import { fetchPosts } from './features/posts/postsSlice'
+import { fetchNews } from './features/news/newsSlice'
 
 // Wrap app rendering so we can wait for the mock API to initialize
 async function start() {
@@ -16,6 +17,7 @@ async function start() {
 
   store.dispatch(fetchUsers())
   store.dispatch(fetchPosts())
+  store.dispatch(fetchNews())
 
   ReactDOM.render(
     <React.StrictMode>

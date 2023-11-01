@@ -25,6 +25,7 @@ const Navbar = () => {
               <Link to={'/'}>Home</Link>
               <Link to={'/users'}>Users</Link>
               <Link to={'/notifications'}>Notifications {unreadNotificationsBadge}</Link>
+              <Link to={'/news'}>News</Link>
             </div>
             <button className="button" onClick={() => {
               dispatch(fetchNotifications())

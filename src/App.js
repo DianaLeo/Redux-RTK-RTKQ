@@ -14,6 +14,7 @@ import EditPostForm from './features/posts/EditPostForm'
 import UserList from './features/users/UserList'
 import UserPage from './features/users/UserPage'
 import NotificationsList from './features/notifications/NotificationList'
+import NewsList from './features/news/NewsList'
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
           <Route path='users' element={<UserList />} />
           <Route path='users/:userId' element={<UserPage />} />
           <Route path='notifications' element={<NotificationsList />} />
+          <Route path='news' element={<NewsList />} />
         </Route>
         <Route path='*' element={<Spinner text='Not found' />} />
       </Routes>
