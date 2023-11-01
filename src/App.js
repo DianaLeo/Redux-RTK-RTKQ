@@ -19,7 +19,7 @@ import HomePage from './components/HomePage'
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename='/Redux-RTK-RTKQ'>
       <Routes>
         <Route path='/' element={<Navbar />}>
           <Route index element={<HomePage />} />
