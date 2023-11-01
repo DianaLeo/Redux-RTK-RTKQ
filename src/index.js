@@ -13,12 +13,11 @@ import { fetchNews } from './features/news/newsSlice'
 async function start() {
   // Start our mock API server
   if (process.env.NODE_ENV === "development") {
-    await worker.start({ onUnhandledRequest: 'bypass' })
+    await worker.start({ onUnhandledRequest: 'bypass' })//
   }
 
   store.dispatch(extendedApiSlice.endpoints.getUsers.initiate())
   //store.dispatch(fetchPosts())
-  store.dispatch(fetchNews())
 
   ReactDOM.render(
     <React.StrictMode>
